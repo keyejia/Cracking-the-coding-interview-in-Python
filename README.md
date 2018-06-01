@@ -1,8 +1,9 @@
 # Cracking-the-coding-interview-in-Python
 
 Using python to Solve all the Cracking the Coding Interview by Gayle Lackmann McDowell. 
+Preparing for the Great Career change of 2018.
 
-# Different Chapters
+## Different Chapters
 - ch-01-arrays-and-strings
 - ch-02-linked-lists	
 - ch-03-stacks-and-queues	

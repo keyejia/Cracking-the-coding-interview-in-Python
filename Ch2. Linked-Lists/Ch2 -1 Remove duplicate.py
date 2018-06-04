@@ -1,18 +1,23 @@
-# Remove the duplicate values from a linked list.
-
+# -*- coding: utf-8 -*-
 import unittest
 
 def remove_duplicates(head):
-  node = head
-  if node:
-    values = {node.data: True}
-    while node.next:
-      if node.next.data in values:
-        node.next = node.next.next
-      else:
-        values[node.next.data] = True
-        node = node.next
-  return head
+    nodes = {}
+    node = head
+    while(node!=None):
+        if node.data in nodes.keys():
+            node.data = node.next.data
+            node.next = node.next.next
+        else:
+            nodes[node.data] = 1
+            node = node.next
+
+    return head
+
+
+
+
+
 
 class Node():
   def __init__(self, data, next):
@@ -28,6 +33,5 @@ class Test(unittest.TestCase):
     self.assertEqual(head.next.next.data, 5)
     self.assertEqual(head.next.next.next, None)
 
-if __name__ == "__main__":
-  unittest.main()
 
+unittest.main()

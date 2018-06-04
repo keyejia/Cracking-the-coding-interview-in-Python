@@ -1,30 +1,13 @@
-# Determine whether or not a linked list is a palindrome.
-
 import unittest
 
 def is_palindrome(head):
-  forward, backward = head, copy_reverse(head)
-  while forward:
-    if forward.data != backward.data:
-      return False
-    forward, backward = forward.next, backward.next
-  return True
+
 
 def copy_reverse(head):
-  prev = None
-  node = copy(head)
-  while node:
-    next = node.next
-    node.next = prev
-    prev = node
-    node = copy(next)
-  return prev
+
 
 def copy(node):
-  if node:
-    return Node(node.data, node.next)
-  else:
-    return None
+
 
 class Node():
   def __init__(self, data, next=None):
@@ -51,6 +34,4 @@ class Test(unittest.TestCase):
     head = Node(10,Node(20,Node(30,Node(40))))
     self.assertEqual(str(copy_reverse(head)), "40,30,20,10")
 
-if __name__ == "__main__":
-  unittest.main()
-
+unittest.main()

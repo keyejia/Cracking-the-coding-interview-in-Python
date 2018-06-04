@@ -1,16 +1,5 @@
-# Detect whether or not a linked list contains a cycle.
-
 import unittest
 
-def detect_cycle(head):
-  nodes = {}
-  node = head
-  while node:
-    if node in nodes:
-      return node
-    nodes[node] = True
-    node = node.next
-  return None
 
 class Node():
   def __init__(self, data, next=None):
@@ -26,5 +15,4 @@ class Test(unittest.TestCase):
     head2 = Node(500,node1)
     self.assertEqual(detect_cycle(head2), node1)
 
-if __name__ == "__main__":
-  unittest.main()
+unittest.main()

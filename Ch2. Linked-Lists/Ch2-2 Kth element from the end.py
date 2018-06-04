@@ -1,20 +1,24 @@
-# Return the k^{th} to last node in a linked list.
+# -*- coding: utf-8 -*-
 
 import unittest
 
+
 def kth_to_last(head, k):
-  lead, follow = head, head
-  for _ in xrange(k):
-    if not lead:
-      return None
-    lead = lead.next
-  while lead:
-    lead, follow = lead.next, follow.next
-  return follow
+    if k == 0: return None
+    pA = head
+    pB = head
+    for i in range (0,k):
+        if not pA:
+            return None
+        pA = pA.next
+    while pA:
+        pA, pB = pA.next, pB.next
+    return pB
 
 class Node():
   def __init__(self, data, next=None):
-    self.data, self.next = data, next
+    self.data = data
+    self.next = next
 
 class Test(unittest.TestCase):
   def test_kth_to_last(self):
@@ -26,5 +30,4 @@ class Test(unittest.TestCase):
     self.assertEqual(1, kth_to_last(head, 7).data);
     self.assertEqual(None, kth_to_last(head, 8));
 
-if __name__ == "__main__":
-  unittest.main()
+unittest.main()

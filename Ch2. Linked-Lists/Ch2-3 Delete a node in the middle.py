@@ -1,11 +1,9 @@
-# Delete the given nonterminal node from the containing linked list.
+# -*- coding: utf-8 -*-
 
 import unittest
-
 def delete_middle(node):
-  next = node.next
-  node.data = next.data
-  node.next = next.next
+   node.data = node.next.data
+   node.next = node.next.next
 
 class Node():
   def __init__(self, data, next=None):
@@ -19,5 +17,4 @@ class Test(unittest.TestCase):
     self.assertEqual(head.next.data, 2)
     self.assertEqual(head.next.next.data, 4)
 
-if __name__ == "__main__":
-  unittest.main()
+unittest.main()

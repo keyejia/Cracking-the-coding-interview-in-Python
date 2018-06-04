@@ -1,20 +1,12 @@
-# Return an intersecting node if two linked lists intersect.
-
+# -*- coding: utf-8 -*-
 import unittest
 
 def intersection(head1, head2):
-  nodes = {}
-  node = head1
-  while node:
-    nodes[node] = True
-    node = node.next
-  node = head2
-  while node:
-    if node in nodes:
-      return node
-    node = node.next
-  return None
-
+    
+    
+    
+    
+    
 class Node():
   def __init__(self, data, next=None):
     self.data, self.next = data, next
@@ -35,6 +27,4 @@ class Test(unittest.TestCase):
     head4 = Node(60,Node(90,Node(10,node)))
     self.assertEqual(intersection(head3, head4), node)
 
-if __name__ == "__main__":
-  unittest.main()
-
+unittest.main()

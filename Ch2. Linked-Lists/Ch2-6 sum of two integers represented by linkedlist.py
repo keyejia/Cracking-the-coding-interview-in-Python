@@ -1,8 +1,24 @@
 import unittest
 
 def sum_lists(num1, num2):
-
-    
+    result = Node((num1.data+num2.data)%10)
+    pA = result
+    carry = int((num1.data+num2.data)/10)
+    while num1 or num2:
+        if num1:
+            num1 = num1.next
+            if num1:a = num1.data
+            else: a = 0
+        if num2:
+            num2 = num2.next
+            if num2:b = num2.data
+            else: b = 0
+        if num2 == None and num1 == None : break
+        pA.next = Node((a+b+carry)%10)
+        pA = pA.next
+        carry = int((a+b+carry)/10)
+        
+    return result
     
 
 class Node():

@@ -1,5 +1,16 @@
 import unittest
 
+def detect_cycle(head):
+    pA = head
+    pB = head.next
+    A = {}
+    while pB:
+        A[pA] = 1
+        if pB in A:
+            return pB
+        pA = pA.next
+        pB = pB.next
+    return None 
 
 class Node():
   def __init__(self, data, next=None):

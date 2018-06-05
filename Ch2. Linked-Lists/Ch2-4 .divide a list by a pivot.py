@@ -1,7 +1,30 @@
 import unittest
 
-
-
+def partition(head, p):
+    node = head
+    headA = None
+    headB = None
+    tailA = None
+    while node:
+        if node.data < p:
+            if headA ==None:
+                pA = node
+                headA = pA
+            else: 
+                pA.next = node
+                pA = pA.next
+                tailA = node
+        else:
+            if headB == None:
+                pB = node
+                headB = pB
+            else: 
+                pB.next = node
+                pB = pB.next
+        node = node.next
+    tailA.next = headB
+    return headA
+                
 
 
 class Node():

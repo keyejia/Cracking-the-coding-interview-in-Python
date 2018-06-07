@@ -2,17 +2,19 @@
 
 class QueueViaStacks():
   def __init__(self):
-    self.in_stack = Stack()
-    self.out_stack = Stack()
-  
+    self.inStack = Stack()
+    self.outStack = Stack()
+    
   def add(self, item):
-    self.in_stack.push(item)
+    self.inStack.push(item)
     
   def remove(self):
-    if len(self.out_stack) == 0:
-      while len(self.in_stack):
-        self.out_stack.push(self.in_stack.pop())
-    return self.out_stack.pop()
+    while len(self.inStack):
+      self.outStack.push(self.inStack.pop())
+    result = self.outStack.pop()
+    while len(self.outStack):
+      self.inStack.push(self.outStack.pop())
+    return result
 
 class Stack():
   def __init__(self):
@@ -23,7 +25,7 @@ class Stack():
   
   def push(self, item):
     self.array.append(item)
-  
+
   def pop(self):
     if not len(self.array):
       return None

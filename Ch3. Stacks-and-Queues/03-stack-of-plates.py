@@ -7,27 +7,25 @@ class MultiStack():
     self.stacks = []
   
   def push(self, item):
-    if len(self.stacks) and (len(self.stacks[-1]) < self.capacity):
+    if len(self.stacks) and (len(self.stacks[-1])) < self.capacity:
       self.stacks[-1].append(item)
     else:
       self.stacks.append([item])
   
   def pop(self):
-    while len(self.stacks) and (len(self.stacks[-1]) == 0):
+    while len(self.stacks)and len(self.stacks[-1]) == 0:
       self.stacks.pop()
     if len(self.stacks) == 0:
       return None
-    item = self.stacks[-1].pop()
-    if len(self.stacks[-1]) == 0:
-      self.stacks.pop()
-    return item
+    else:
+      return self.stacks[-1].pop()
+    
   
   def pop_at(self, stack_number):
-    if (stack_number < 0) or (len(self.stacks) <= stack_number):
+    if len(self.stacks[stack_number]) > 0:
+      return self.stacks[stack_number].pop()
+    else:
       return None
-    if len(self.stacks[stack_number]) == 0:
-      return None
-    return self.stacks[stack_number].pop()
 
 import unittest
 

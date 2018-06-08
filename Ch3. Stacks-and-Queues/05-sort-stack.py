@@ -1,30 +1,34 @@
 # Sort a stack with the smallest on top using only a single temporary stack.
 
 def sort_stack(stack):
-  temp = Stack()
   previous = stack.pop()
   current = stack.pop()
+  temp = Stack()
   while current:
-    if current < previous:
-      temp.push(current)
-    else:
+    if previous < current:
       temp.push(previous)
       previous = current
-    current = stack.pop()
-  is_sorted = True
+      current = stack.pop()
+    else: 
+      temp.push(current)
+      current = stack.pop()
+    if current == None and previous: temp.push(previous)
+       
+  sorted = True
+  previous = temp.pop()
   current = temp.pop()
   while current:
-    if current > previous:
-      is_sorted = False
-      stack.push(current)
-    else:
+    if previous > current:
       stack.push(previous)
       previous = current
-    current = temp.pop()
-  stack.push(previous)
-  if is_sorted:
-    return stack
-  return sort_stack(stack)
+      current = temp.pop()
+    else: 
+      stack.push(current)
+      current = temp.pop()
+      sorted = False
+    if current == None and previous: stack.push(previous)
+  if sorted: return stack
+  else: return sort_stack(stack)
 
 class Stack():
   def __init__(self):
@@ -54,7 +58,7 @@ import unittest
 
 class Test(unittest.TestCase):
   def test_sort_stack(self):
-    self.assertEqual(str(sort_stack(Stack())), "None,None")
+    self.assertEqual(str(sort_stack(Stack())), "None")
     stack = Stack()
     stack.push(10)
     stack.push(30)
@@ -68,6 +72,4 @@ class Test(unittest.TestCase):
     self.assertEqual(str(stack), "60,50,90,20,80,40,70,30,10,None")
     self.assertEqual(str(sort_stack(stack)), "10,20,30,40,50,60,70,80,90,None")
 
-if __name__ == "__main__":
-  unittest.main()
-
+unittest.main()

@@ -1,17 +1,7 @@
 # Return the successor of a node in a binary search tree.
 
 def successor(node):
-  if not node:
-    return None
-  child = node.right
-  if child:
-    while child.left:
-      child = child.left
-  if child:
-    return child
-  if node.parent and node.parent.data > node.data:
-    return node.parent
-  return None
+  
 
 class Node():
   def __init__(self, data, left=None, right=None):

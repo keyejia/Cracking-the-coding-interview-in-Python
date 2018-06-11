@@ -1,24 +1,7 @@
 # Find a route from the first node to the second node in a directed graph.
 
 def find_route(node1, node2):
-  found_path = None
-  queue = Queue()
-  node = node1
-  node.shortest_path = [node]
-  all_visited_nodes = [node]
-  while node:
-    for adjacent in node.adjacency_list:
-      if not adjacent.shortest_path:
-        adjacent.shortest_path = node.shortest_path + [adjacent]
-        if adjacent == node2:
-          found_path = node.shortest_path + [adjacent]
-          break
-        queue.add(adjacent)
-        all_visited_nodes.append(adjacent)
-    node = queue.remove()
-  for visited in all_visited_nodes:
-    visited.shortest_path = None
-  return found_path
+  
   
 class Node():
   def __init__(self, data, adjacency_list=None):

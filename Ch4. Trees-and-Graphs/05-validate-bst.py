@@ -1,8 +1,14 @@
 # Validate that a binary tree is a binary search tree.
 
 def validate_tree(binary_tree):
+  return validate_tree_node(binary_tree, -float('inf'), float('inf'))
 
 def validate_tree_node(node, left_bound, right_bound):
+  if not node:
+    return True
+  return node.data >= left_bound and node.data <= right_bound and \
+         validate_tree_node(node.left, left_bound, node.data) and \
+         validate_tree_node(node.right, node.data, right_bound)
 
 class Node():
   def __init__(self, data, left=None, right=None):

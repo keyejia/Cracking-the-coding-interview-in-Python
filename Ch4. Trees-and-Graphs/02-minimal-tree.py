@@ -2,7 +2,12 @@
 # sorted array.
 
 def minimal_height_bst(sorted_array):
-  
+  if len(sorted_array) == 0: return None
+  if len(sorted_array) == 1: return BSTNode(sorted_array[0])
+  mid = int(len(sorted_array)/2)
+  left = minimal_height_bst(sorted_array[:mid])
+  right = minimal_height_bst(sorted_array[mid+1:])
+  return BSTNode(sorted_array[mid], left, right)
 
 class BSTNode():
   def __init__(self, data=None, left=None, right=None):

@@ -1,27 +1,27 @@
 # Determine a build order given a list of projects and their dependencies.
 
-def build_order(vertice, edge):
-  nodes = {}
-  for vertices in vertice:
-    nodes[vertices] = GraphNode(vertices)
-  for edges in edge:
-    nodes[edges[0]].add_edge(nodes[edges[1]])
-  queue = Queue()
-  for vertices in vertice:
-    node = nodes[vertices]
-    if not node.dependencies_left:
-      queue.add(node)
-  buildOrder = []
-  while queue.is_not_empty():
-    node = queue.remove()
-    buildOrder.append(node.data)
-    for n in node.edges:
-      n.dependencies_left -= 1
-      if not n.dependencies_left:
-        queue.add(n)
-  if len(buildOrder) < len(vertice):
-    return Exception("Cycle detected")
-  return buildOrder
+def build_order(vertices, edges):
+    nodes = {}
+    buildOrder = []
+    for vertice in vertices:
+      nodes[vertice] = GraphNode(vertice)
+    for edge in edges:
+      nodes[edge[0]].add_edge(nodes[edge[1]])
+    queue = Queue()
+    for vertice in vertices:
+        node = nodes[vertice]
+        if not node.dependencies_left:
+            queue.add(node)
+    while queue.is_not_empty():
+        node = queue.remove()
+        buildOrder.append(node.data)
+        for n in node.edges:
+            n.dependencies_left -=1
+            if not n.dependencies_left:
+                queue.add(n)
+    if len(buildOrder) < len(vertices):
+        return Exception("Cycle detected")
+    return buildOrder
 
 class GraphNode():
   def __init__(self, data):

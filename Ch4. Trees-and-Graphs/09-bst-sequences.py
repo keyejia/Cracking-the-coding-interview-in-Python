@@ -4,19 +4,19 @@ def bst_sequences(bst):
   return bst_sequences_partial([], [bst])
   
 def bst_sequences_partial(partial, subtrees):
-  if not len(subtrees):
-    return [partial]
-  sequences = []
-  for index, subtree in enumerate(subtrees):
-    next_partial = partial + [subtree.data]
-    next_subtrees = subtrees[:index] + subtrees[index+1:]
-    if subtree.left:
-      next_subtrees.append(subtree.left)
-    if subtree.right:
-      next_subtrees.append(subtree.right)
-    sequences += bst_sequences_partial(next_partial, next_subtrees)
-  return sequences
-
+  if not subtrees:
+      return [partial]
+  sequence = []
+  for i, node in enumerate(subtrees):
+      nextPartial = partial+[node.data]
+      nextSubtree = subtrees[:i] + subtrees[i+1:]
+      if node.left:
+          nextSubtree.append(node.left)
+      if node.right:
+          nextSubtree.append(node.right)
+      sequence += bst_sequences_partial(nextPartial, nextSubtree)
+  return sequence 
+  
 class Node():
   def __init__(self, data=None, left=None, right=None):
     self.data, self.left, self.right = data, left, right
@@ -38,6 +38,7 @@ class Test(unittest.TestCase):
       [7, 4, 6, 5, 9],
       [7, 9, 4, 5, 6],
       [7, 9, 4, 6, 5]])
+
 
 if __name__ == "__main__":
   unittest.main()

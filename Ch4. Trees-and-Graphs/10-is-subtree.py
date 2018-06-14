@@ -8,13 +8,12 @@ def is_subtree(bt1, bt2):
 
 def equivalent_trees(bt1, bt2):
   if not bt1:
-    return not bt2
+      return not bt2
   if not bt2:
-    return False
-  if bt1.data != bt2.data:
-    return False
-  return equivalent_trees(bt1.left, bt2.left) and \
-         equivalent_trees(bt1.right, bt2.right)
+      return False
+  if bt1.data !=bt2.data:
+      return False
+  return equivalent_trees(bt1.left,bt2.left) and equivalent_trees(bt1.right, bt2.right)
 
 class Node():
   def __init__(self, data=None, left=None, right=None):

@@ -12,17 +12,17 @@ class Node():
   def get_random_node(self):
     return self.get_numbered_node(randint(0, self.count - 1))
 
+  def get_all_nodes(self, node):
+      if not node: return None
+      array = [node]
+      if node.left:
+          array+=self.get_all_nodes(node.left) 
+      if node.right:
+          array+=self.get_all_nodes(node.right)
+      return array
+      
   def get_numbered_node(self, number):
-    if number == 0:
-      return self
-    if self.left:
-      if number - 1 < self.left.count:
-        return self.left.get_numbered_node(number - 1)
-      elif self.right:
-        return self.right.get_numbered_node(number - 1 - self.left.count)
-    if self.right:
-      return self.right.get_numbered_node(number - 1)
-    return None
+    return self.get_all_nodes(self)[number]
 
 import random
 import unittest
